@@ -18,10 +18,6 @@ function buildMetadata(sample) {
   });
 };
 
-
-
-
-
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
@@ -54,21 +50,19 @@ function buildCharts(sample) {
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
-  d3.json(url).then(function(data) {
-      const pieX = data.otu_ids.slice(0, 10);
-      const pielabels = data.otu_labels.slice(0, 10);
-      const pieY = data.sample_values.slice(0,10);
-
-      var data = [{
-        values: pieY,
-        labels: pieX,
-        hovertext: pielabels,
+    var data1 = [{
+        values: Y.slice(0,10),
+        labels: X.slice(0, 10),
+        hovertext: Z.slice(0, 10),
         type: 'pie'
       }];
 
-      Plotly.newPlot('pie', data);
+      var layout = {
+        margin: { t: 0, l: 0 }
+      };
+
+      Plotly.newPlot('pie', data1, layout);
     })
-  })
 };
 
 
